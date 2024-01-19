@@ -19,9 +19,6 @@ public class Main {
             String[] split = split1.split(" [+\\- */] ");
             stroca1 = split[0].trim();
             stroca2 = split[1].trim();
-            if (stroca1 != "[0-9)]") {
-                throw new Exception("Первым аргументом выражения должна быть введена строка");
-            }
             if (stroca1.length() > 10 | stroca2.length() > 10) {
                 throw new Exception("Строки должны быть не более 10 символов");
             }
@@ -48,6 +45,9 @@ public class Main {
                     result = stroca1 + stroca2;
                     break;
                 case '*':
+                    if (stroca1.matches(".*\\d+.*")) {
+                        throw new Exception("Первым аргументом выражения должна быть введена строка");
+                    }
                     int i = Integer.parseInt(stroca2.trim());
                     if (i > 10) {
                         throw new Exception("Число должно быть не больше 10");
@@ -55,6 +55,9 @@ public class Main {
                         result = stroca1.repeat(i);
                     break;
                 case '/':
+                    if (stroca1.matches(".*\\d+.*")) {
+                        throw new Exception("Первым аргументом выражения должна быть введена строка");
+                    }
                     int j = Integer.parseInt(stroca2.trim());
                     if (j > 10) {
                         throw new Exception("Число должно быть не больше 10");
