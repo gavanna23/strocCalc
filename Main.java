@@ -53,6 +53,9 @@ public class Main {
                         throw new Exception("Число должно быть не больше 10");
                     } else
                         result = stroca1.repeat(i);
+                    if (result.length() > 40) {
+                        result = result.substring(0, 40) + "...";
+                    }
                     break;
                 case '/':
                     if (stroca1.matches(".*\\d+.*")) {
@@ -70,11 +73,11 @@ public class Main {
                     } else result = stroca1.substring(0, minus);
                     break;
             }
+
         } catch (NumberFormatException e) {
             System.out.println("Умножать и делить на слова нельзя");
         }
-        if (result.length() > 40) {
-            throw new Exception(result.substring(0, 40) + "...");
-        } else return result;
+        return result;
     }
 }
+
